@@ -1,6 +1,7 @@
 package com.example.brelax.ui.theme
 import android.accessibilityservice.AccessibilityService.ScreenshotResult
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -50,6 +51,7 @@ import com.example.brelax.ui.theme.Breathmethod2
 import com.example.brelax.ui.theme.Breathmethod3
 import com.example.brelax.ui.theme.PreviousButton
 import com.example.brelax.ui.theme.StartButton
+import kotlin.math.log
 
 @Preview
 @Composable
@@ -219,12 +221,6 @@ fun BreathingMethodInfo3(title: String, shortD: String, detailed: String, inhale
     }
 }
 
-fun Card(
-    modifier: Modifier,
-    backgroundColor: Color,
-    shape: RoundedCornerShape,
-    elevation: Dp,
-    content: @Composable() (ColumnScope.() -> Unit)
-) {
 
-}
+
+
