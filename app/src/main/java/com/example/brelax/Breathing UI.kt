@@ -1,4 +1,5 @@
 package com.example.brelax.ui.theme
+import android.content.Intent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,17 +23,18 @@ import androidx.compose.ui.unit.sp
 import com.example.brelax.R
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 
 @Preview
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun BreathScreenbox() {
+fun BreathScreenbox(navigateToBreathingActivity: (String, Int) -> Unit) {
     val selectedMode = remember { mutableStateOf("深度放鬆") }
     val selectedBreathingMethod = remember { mutableStateOf("4-7-8") }
     val items = (1..10).toList() // 模擬的數據
     val lazyListState = rememberLazyListState() // LazyRow 的滾動狀態
     val centralIndex = remember { mutableStateOf(1) } // 預設選中索引
-
+    val context = LocalContext.current
     // 使用 Box 來疊加背景圖片和其他內容
     Box(
         modifier = Modifier.fillMaxSize()  // 填滿整個螢幕
@@ -183,8 +185,8 @@ fun BreathScreenbox() {
                                         shape = CircleShape // 圓形背景
                                     )
                                     .clickable {
-                                    centralIndex.value = index + 1 // 點擊時設置選中項目
-                                }
+                                        centralIndex.value = index + 1 // 點擊時設置選中項目
+                                    }
                             ) {
                                 Text(
                                     text = item.toString(),
@@ -203,10 +205,24 @@ fun BreathScreenbox() {
                 Spacer(modifier = Modifier.height(25.dp))
 
                 // "開始呼吸"按鈕
-                StartButton()
+                StartButton(onClick = {
+                    // 構建 Intent 傳遞選擇的呼吸方法和時間
+                    val intent = Intent(context, BreathingActivity::class.java).apply {
+                        putExtra("BREATHING_METHOD", selectedBreathingMethod.value)
+                        putExtra("TIME_MINUTES", centralIndex.value)
+                    }
+
+                    // 啟動 BreathingActivity
+                    context.startActivity(intent)
+                })
             }
         }
     }
 }
 
 
+@Preview
+@Composable
+fun BreathScreenPreview() {
+    BreathScreenbox(navigateToBreathingActivity = { _, _ -> })
+}

@@ -321,7 +321,7 @@ fun BreathingDurationSelector() {
 
 @Preview
 @Composable
-fun StartButton(modifier: Modifier = Modifier, color: Color = Color.White) {
+fun StartButton(modifier: Modifier = Modifier, color: Color = Color.White, onClick: () -> Unit) {
     // 顯示一個按鈕來開始呼吸練習
     Row(
         modifier = modifier
