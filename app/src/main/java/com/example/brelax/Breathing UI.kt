@@ -2,6 +2,7 @@ package com.example.brelax.ui.theme
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -30,7 +31,7 @@ fun BreathScreenbox() {
     val selectedBreathingMethod = remember { mutableStateOf("4-7-8") }
     val items = (1..10).toList() // 模擬的數據
     val lazyListState = rememberLazyListState() // LazyRow 的滾動狀態
-    val centralIndex = remember { derivedStateOf { lazyListState.firstVisibleItemIndex + 1 } }
+    val centralIndex = remember { mutableStateOf(1) } // 預設選中索引
 
     // 使用 Box 來疊加背景圖片和其他內容
     Box(
@@ -77,7 +78,7 @@ fun BreathScreenbox() {
                 // 呼吸模式選擇器
                 BreathingModeSelector(selectedMode.value) { mode ->
                     selectedMode.value = mode
-                    selectedBreathingMethod.value = "" // 每次選擇模式時重置呼吸法選擇
+                    selectedBreathingMethod.value = "4-7-8" // 每次選擇模式時重置呼吸法選擇
                 }
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -106,7 +107,7 @@ fun BreathScreenbox() {
 
                     "4-2-6" -> {
                         BreathingMethodInfo(
-                            title = "4-2-6呼吸法",
+                            title = "4-2-6 呼吸法",
                             shortD = "適合在壓力大的情況下，幫助回到平靜狀態",
                             detailed = "是幫助從交感神經系統（逃跑或戰鬥反應）轉移到副交感神經系統（休息和消化狀態）。" +
                                     "這種方法可以促進橫膈膜呼吸，活化迷走神經，" +
@@ -114,6 +115,30 @@ fun BreathScreenbox() {
                             inhale = "吸氣 4 秒",
                             exhale = "呼氣 6 秒",
                             hold = "屏氣 2 秒"
+                        )
+                    }
+                    "3-3-3" -> {
+                        BreathingMethodInfo(
+                            title = "3-3-3 呼吸法",
+                            shortD = "適合日常短暫休息時應用",
+                            detailed = "3-3-3呼吸法是一種簡單而有效的呼吸技巧，幫助個人快速放鬆、減少壓力和焦慮感，" +
+                                    "有助於平靜神經系統的快速呼吸法，可以在日常生活中隨時隨地應用。" +
+                                    "當您感到焦慮或壓力並需要快速恢復平靜時，這是一個很好的工具。",
+                            inhale = "吸氣 3 秒",
+                            exhale = "呼氣 3 秒",
+                            hold = "屏氣 3 秒"
+                        )
+                    }
+                    "Box" -> {
+                        BreathingMethodInfo(
+                            title = "Box 呼吸法",
+                            shortD = "專注與減壓，特別適合在工作或需要提升專注力時使用",
+                            detailed = "Box breathing（方形呼吸），" +
+                                    "又稱為四方呼吸，是一種簡單的呼吸技巧，主要用於幫助減輕壓力、提升專注力和促進放鬆。" +
+                                    "它可以幫助調節自主神經系統，減少焦慮並改善心理狀態。",
+                            inhale = "吸氣 4 秒",
+                            exhale = "呼氣 4 秒",
+                            hold = "屏氣 4 秒"
                         )
                     }
                 }
@@ -130,13 +155,19 @@ fun BreathScreenbox() {
                     contentAlignment = Alignment.Center
                 ) {
                     // 可左右滾動的 LazyRow
+                    LaunchedEffect(centralIndex.value) {
+                        // 每次 centralIndex 改變時，滾動到對應位置
+                        val targetIndex = centralIndex.value - 1
+                        lazyListState.animateScrollToItem(targetIndex - 3.coerceAtLeast(0)) // 保持選中項目在中間
+                    }
+                    // 可左右滾動的 LazyRow
                     LazyRow(
                         state = lazyListState,
                         flingBehavior = rememberSnapFlingBehavior(lazyListState), // 啟用 Snap 行為
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 1.dp), // 留出空間來實現數字居中
-                        horizontalArrangement = Arrangement.spacedBy(20.dp) // 每個數字之間的間距
+                        horizontalArrangement = Arrangement.spacedBy(15.dp) // 每個數字之間的間距
                     ) {
                         items(items.size) { index ->
                             val item = items[index]
@@ -151,6 +182,9 @@ fun BreathScreenbox() {
                                         color = if (isSelected) Color.White else Color.Transparent, // 選中時顯示白色背景
                                         shape = CircleShape // 圓形背景
                                     )
+                                    .clickable {
+                                    centralIndex.value = index + 1 // 點擊時設置選中項目
+                                }
                             ) {
                                 Text(
                                     text = item.toString(),

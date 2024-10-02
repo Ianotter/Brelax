@@ -98,6 +98,28 @@ fun Breathmethod1(
             }
         }
     }
+if (selectedMode == "快速放鬆"){
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        BPattern(text = "3-3-3",
+            onClick = { onMethodSelected("3-3-3") },
+            isSelected = selectedMethod == "3-3-3" // 判斷是否被選中
+        )
+    }
+}
+    if (selectedMode == "專注放鬆"){
+        Row(
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        BPattern(text = "Box",
+            onClick = { onMethodSelected("Box") },
+            isSelected = selectedMethod == "Box" // 判斷是否被選中
+        )
+    }
+    }
 }
 
 
