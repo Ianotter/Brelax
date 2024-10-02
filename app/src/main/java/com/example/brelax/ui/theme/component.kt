@@ -1,8 +1,8 @@
 package com.example.brelax.ui.theme
 
-import android.text.Layout
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,43 +32,77 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.brelax.R
 
-@Preview
+
 @Composable
-fun BreathingModeSelector() {
+fun BreathingModeSelector(
+    selectedMode: String, // 新增這個參數
+    onModeSelected: (String) -> Unit
+) {
     LazyRow(
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxWidth()
     ) {
         item {
-            BPattern(text = "快速放鬆", onClick = {})
+            BPattern(
+                text = "快速放鬆",
+                onClick = { onModeSelected("快速放鬆") },
+                isSelected = selectedMode == "快速放鬆" // 使用傳入的 selectedMode
+            )
             Spacer(modifier = Modifier.width(10.dp))
         }
         item {
-            BPattern(text = "深度放鬆", onClick = {})
+            BPattern(
+                text = "深度放鬆",
+                onClick = { onModeSelected("深度放鬆") },
+                isSelected = selectedMode == "深度放鬆" // 使用傳入的 selectedMode
+            )
             Spacer(modifier = Modifier.width(10.dp))
         }
         item {
-            BPattern(text = "專注放鬆", onClick = {})
+            BPattern(
+                text = "專注放鬆",
+                onClick = { onModeSelected("專注放鬆") },
+                isSelected = selectedMode == "專注放鬆" // 使用傳入的 selectedMode
+            )
         }
     }
 }
 
-@Preview
+
+
 @Composable
-fun Breathmethod1() {
-    LazyRow(
-        horizontalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxWidth()
-    ) {
-        item {
-            BPattern(text = "4-7-8", onClick = {})
-            Spacer(modifier = Modifier.width(10.dp))
-        }
-        item {
-            BPattern(text = "4-2-6", onClick = {})
+fun Breathmethod1(
+    selectedMode: String,
+    selectedMethod: String, // 新增這個參數
+    onMethodSelected: (String) -> Unit
+) {
+    if (selectedMode == "深度放鬆") {
+        LazyRow(
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            item {
+                BPattern(
+                    text = "4-7-8",
+                    onClick = { onMethodSelected("4-7-8") },
+                    isSelected = selectedMethod == "4-7-8" // 判斷是否被選中
+                )
+                Spacer(modifier = Modifier.width(10.dp))
+            }
+            item {
+                BPattern(
+                    text = "4-2-6",
+                    onClick = { onMethodSelected("4-2-6") },
+                    isSelected = selectedMethod == "4-2-6" // 判斷是否被選中
+                )
+            }
         }
     }
 }
+
+
+
+
 
 @Preview
 @Composable
@@ -99,18 +131,25 @@ fun Breathmethod3() {
 fun BPattern(
     modifier: Modifier = Modifier,
     color: Color = Color.White,
-    text: String = "xxxx", onClick: () -> Unit = {}
+    text: String = "xxxx",
+    onClick: () -> Unit = {},
+    isSelected: Boolean = false // 新增參數來表示是否被選中
 ) {
     Row(
         modifier = Modifier
+            .clip(RoundedCornerShape(30.dp))
             .width(100.dp)
             .aspectRatio(3f)
+            .clickable(onClick = onClick) // 使整個 Row 可點擊
+            .background(if (isSelected) Color(0xFFFFFFFF) else Color(0x00FFFFFF)) // 根據 isSelected 來改變背景顏色
     ) {
         Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Text(
                 text = text,
                 textAlign = TextAlign.Center,
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                color = if (isSelected) Color(0xFF4B4B4B) else Color(0xFF989898), // 字體顏色保持黑色
+
             )
         }
 
