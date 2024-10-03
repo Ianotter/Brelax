@@ -342,6 +342,31 @@ fun StartButton(modifier: Modifier = Modifier, color: Color = Color.White, onCli
     }
 }
 
+
+@Preview
+@Composable
+fun Button1(modifier: Modifier = Modifier, color: Color = Color.White,text: String="xxxx" ) {
+    // 顯示一個按鈕來開始呼吸練習
+    Row(
+        modifier = modifier
+            .clip(RoundedCornerShape(50.dp))
+            .background(Color(0xFFFFFFFFF))
+            .width(200.dp)
+            .aspectRatio(4.5f),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = text,
+            modifier = modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 20.sp
+        )
+
+    }
+}
+
+
 @Preview
 @Composable
 fun Breath(

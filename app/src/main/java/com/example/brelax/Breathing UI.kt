@@ -25,7 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 
-@Preview
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BreathScreenbox(navigateToBreathingActivity: (String, Int) -> Unit) {
