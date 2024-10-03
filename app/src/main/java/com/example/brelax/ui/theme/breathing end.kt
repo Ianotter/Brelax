@@ -18,6 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -80,7 +81,7 @@ fun BreathScreenUI() {
                     text = "完成訓練啦！\n心情感覺如何",
                     fontSize = 20.sp,
                     lineHeight = 30.sp,
-                    color = Color.Black,
+                    color = colorResource(id = R.color.tblack),
                     modifier = Modifier.padding(8.dp),
                     textAlign = TextAlign.Center, // 文字水平居中
                  fontWeight = FontWeight.ExtraBold,

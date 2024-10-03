@@ -14,6 +14,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.dtx804lab.brelax.ui.theme.CustomTypography
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -56,12 +57,14 @@ fun BrelaxTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = CustomTypography,
         content = content
     )
 }
 
 // Theme.kt
+
+
 
 
 

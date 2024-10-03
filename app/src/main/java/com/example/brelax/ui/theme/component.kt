@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -319,7 +320,7 @@ fun BreathingDurationSelector() {
     }
 }
 
-@Preview
+
 @Composable
 fun StartButton(modifier: Modifier = Modifier, color: Color = Color.White, onClick: () -> Unit) {
     // 顯示一個按鈕來開始呼吸練習
@@ -360,7 +361,8 @@ fun Button1(modifier: Modifier = Modifier, color: Color = Color.White,text: Stri
             modifier = modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 20.sp
+            fontSize = 20.sp,
+            color = colorResource(id = R.color.tblack)
         )
 
     }
@@ -391,7 +393,7 @@ fun Breath(
             painter = painter,
             contentDescription = null
         )
-        Text(text = text,fontSize = 12.sp)
+        Text(text = text,fontSize = 12.sp,)
     }}
 
 @Preview
