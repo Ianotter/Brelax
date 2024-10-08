@@ -179,14 +179,15 @@ fun BPattern(
     }
 }
 
+
 @Composable
 fun BreathingMethodInfo(
-    title: String,
-    shortD: String,
-    detailed: String,
-    inhale:String,
-    hold:String,
-    exhale:String
+    title: String ="",
+    shortD: String="",
+    detailed: String="",
+    inhale:String="",
+    hold:String="",
+    exhale:String=""
 ) {
     // 呼吸法的介紹區域，用 Column 來垂直排列文字
     Column(
@@ -329,7 +330,8 @@ fun StartButton(modifier: Modifier = Modifier, color: Color = Color.White, onCli
             .clip(RoundedCornerShape(50.dp))
             .background(Color(0xFFFFFFFFF))
             .width(200.dp)
-            .aspectRatio(4.5f),
+            .aspectRatio(4.5f)
+            .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
@@ -337,23 +339,32 @@ fun StartButton(modifier: Modifier = Modifier, color: Color = Color.White, onCli
             modifier = modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.ExtraBold,
-            fontSize = 20.sp
+            fontSize = 20.sp,
+            color = colorResource(id = R.color.tblack)
         )
 
     }
 }
-
-
 @Preview
 @Composable
-fun Button1(modifier: Modifier = Modifier, color: Color = Color.White,text: String="xxxx" ) {
+fun StartButtonPreview() {
+    Button1(
+        color = Color.Blue, // 指定按鈕顏色
+        onClick = { /* 預覽不需要點擊邏輯 */ }
+    )
+}
+
+
+@Composable
+fun Button1(modifier: Modifier = Modifier, color: Color = Color.White,text: String="xxxx" ,onClick: () -> Unit) {
     // 顯示一個按鈕來開始呼吸練習
     Row(
         modifier = modifier
             .clip(RoundedCornerShape(50.dp))
-            .background(Color(0xFFFFFFFFF))
+            .background(Color(0xFFFFFFFF))
             .width(200.dp)
-            .aspectRatio(4.5f),
+            .aspectRatio(4.5f)
+            .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
@@ -364,9 +375,12 @@ fun Button1(modifier: Modifier = Modifier, color: Color = Color.White,text: Stri
             fontSize = 20.sp,
             color = colorResource(id = R.color.tblack)
         )
-
     }
 }
+
+
+
+
 
 
 @Preview

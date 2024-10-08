@@ -6,23 +6,33 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/brelaxlogo_foreground"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/brelaxlogo_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.Brelax"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"/>
+
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Brelax">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 添加 BreathingActivity 的声明 -->
+        <activity
+            android:name=".ui.theme.BreathingActivity"
+            android:exported="true" /> <!-- 你可以根据需要选择是否导出此活动 -->
+
     </application>
 
 </manifest>
