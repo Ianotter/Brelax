@@ -23,7 +23,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -323,7 +325,7 @@ fun BreathingDurationSelector() {
 
 
 @Composable
-fun StartButton(modifier: Modifier = Modifier, color: Color = Color.White, onClick: () -> Unit) {
+fun StartButton(modifier: Modifier = Modifier, color: Color = Color.White,text: String="xxxx", onClick: () -> Unit) {
     // 顯示一個按鈕來開始呼吸練習
     Row(
         modifier = modifier
@@ -332,15 +334,17 @@ fun StartButton(modifier: Modifier = Modifier, color: Color = Color.White, onCli
             .width(200.dp)
             .aspectRatio(4.5f)
             .clickable(onClick = onClick),
-        verticalAlignment = Alignment.CenterVertically
+        horizontalArrangement = Arrangement.Center, // 水平置中
+        verticalAlignment = Alignment.CenterVertically // 垂直置中
     ) {
         Text(
-            text = "開始呼吸",
+            text = text,
             modifier = modifier.fillMaxWidth(),
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.ExtraBold,
             fontSize = 20.sp,
             color = colorResource(id = R.color.tblack)
+
         )
 
     }
@@ -436,3 +440,6 @@ fun Breath2(
         )
         Text(text = text,fontSize = 12.sp)
     }}
+
+
+

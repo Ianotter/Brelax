@@ -237,7 +237,9 @@ fun BreathScreenbox(navController: NavController= rememberNavController()) {
             Spacer(modifier = Modifier.height(25.dp))
 
             // Start breathing button
-            StartButton(onClick = {
+            StartButton(
+                text = "開始呼吸",
+                onClick = {
                 // Build Intent to pass selected breathing method and time
                 val intent = Intent(context, BreathingActivity::class.java).apply {
                     putExtra("BREATHING_METHOD", selectedBreathingMethod.value)

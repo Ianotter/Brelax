@@ -32,7 +32,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.BreathScreenbox
-import com.example.MainScreen
+import com.example.breathMainScreen
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -87,7 +87,7 @@ class BreathingActivity() : ComponentActivity() {
 
                 val navController = rememberNavController() // 獲取 NavController
                 NavHost(navController = navController, startDestination = "home") {
-                    composable("home") { MainScreen(navController) }
+                    composable("home") { breathMainScreen(navController) }
                     composable("breathing") { BreathScreenbox(navController) }
                     composable("breathingend"){ BreathScreenUI(navController) }
                 }
