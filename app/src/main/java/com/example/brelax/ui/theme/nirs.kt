@@ -307,3 +307,25 @@ fun PreviewNirsMeasurementScreen() {
     }
 
 
+@Preview
+@Composable
+fun nirsdatascreen(){
+    Column(modifier = Modifier.fillMaxSize().background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ){
+        Spacer(modifier = Modifier.height(50.dp))
+        Text(
+            text = "選擇測量時間",
+            style = androidx.compose.ui.text.TextStyle(
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+                color = colorResource(id = R.color.tblack),
+                textAlign = TextAlign.Center
+            ),
+            modifier = Modifier.padding(top = 20.dp)
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+        nirsdatachoose()
+
+    }
+}

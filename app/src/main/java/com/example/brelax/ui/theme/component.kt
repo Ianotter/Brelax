@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.graphics.painter.Painter
@@ -442,4 +443,48 @@ fun Breath2(
     }}
 
 
+
+@Preview
+@Composable
+fun nirsdatachoose() {
+    Row(
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        nButton(onClick = {}, text = "D1")
+        nButton(onClick = {}, text = "D2")
+        nButton(onClick = {}, text = "D3")
+    }
+}
+
+@Preview
+@Composable
+fun nButton(modifier: Modifier = Modifier, color: Color = Color.White,text: String="xxxx",onClick: () -> Unit = {},) {
+    // 顯示一個按鈕來開始呼吸練習
+    Row(
+        modifier = modifier
+            .clip(RoundedCornerShape(30.dp))
+            .width(110.dp)
+            .aspectRatio(3f)
+            .background(brush = Brush.linearGradient(colors = listOf(
+                Color(0xFFFFDAD0),
+                Color(0xFFFFE9E2),
+                Color(0xFFFFE9E2),
+                Color(0xFFFFDAD0))
+            )
+            )
+            .clickable(onClick = onClick),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = text,
+            modifier = modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 20.sp,
+            color = colorResource(id = R.color.tblack)
+        )
+    }
+}
 
