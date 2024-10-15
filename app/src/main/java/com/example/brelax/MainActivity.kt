@@ -1,5 +1,6 @@
 package com.example
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,8 +34,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.draw.shadow
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.example.brelax.R
 import com.example.brelax.ui.theme.BreathScreenUI
+import com.example.brelax.ui.theme.Nirsbluetooth
 import com.example.brelax.ui.theme.StartButton
 
 
@@ -51,6 +55,7 @@ class MainActivity : ComponentActivity() {
                 composable("user") { userMainScreen(navController) }
                 composable("breathing") { BreathScreenbox(navController) }
                 composable("breathingend"){ BreathScreenUI(navController) }
+                composable("nirsbluetooth") { Nirsbluetooth(navController) }
             }
         }
     }
@@ -149,7 +154,7 @@ fun nirsMainScreen(navController: NavHostController) {
             // Go Breathing 按鈕
             StartButton(
                 text = "開始測量",
-                onClick = { navController.navigate("") },
+                onClick = { navController.navigate("nirsbluetooth") },
                 modifier = Modifier
                     .padding(10.dp)
                     .width(250.dp),

@@ -4,17 +4,23 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,8 +31,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.brelax.R
 
 @Preview
 @Composable
@@ -71,3 +82,31 @@ fun PreviousButton(
     }
 }
 
+@Preview
+@Composable
+fun bluetoothbutton(
+    modifier: Modifier = Modifier,
+    text: String = "xxx",
+    color: Color = Color.White,
+    onClick: () -> Unit = {},
+) {
+    Row(
+        modifier = modifier
+            .width(280.dp)
+            .aspectRatio(1.8f)
+            .clip(RoundedCornerShape(15.dp))
+            .clickable(onClick = onClick)
+            .background(Color.White),
+        verticalAlignment = Alignment.CenterVertically
+
+    ) {
+        Text(text = "點擊選擇裝置",
+            modifier = modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 16.sp,
+            color = colorResource(id = R.color.tblack)
+
+        )
+    }
+}
